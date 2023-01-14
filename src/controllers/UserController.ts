@@ -1,9 +1,9 @@
 import * as express from 'express'
-import UserService from "../service/userService"
+import UserService from "../service/UserService"
 
 class UserController {
-    public pathLogin = '/api/user/login'
-    public pathRegister = '/api/user/register'
+    public pathLogin = '/api/users/login'
+    public pathRegister = '/api/users/register'
     public router = express.Router()
     private service = new UserService()
 

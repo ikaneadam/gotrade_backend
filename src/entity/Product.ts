@@ -1,10 +1,11 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm"
+import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm"
 import {User} from "./User";
+import {Offer} from "./Offer";
 
 @Entity("product")
 export class Product {
     @PrimaryGeneratedColumn('uuid')
-    id: number
+    UUID: string
 
     @Column({ nullable: false})
     name: string
@@ -20,6 +21,10 @@ export class Product {
 
     @Column({ nullable: false})
     mainImageURL: string
+
+    @ManyToOne(() => Offer)
+    @JoinColumn()
+    offers: Offer[]
 
     @Column("text", { array: true })
     ImagesURL: string[]

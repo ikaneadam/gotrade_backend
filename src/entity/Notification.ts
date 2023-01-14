@@ -4,7 +4,7 @@ import {User} from "./User";
 @Entity('notification')
 export class Notification {
     @PrimaryGeneratedColumn('uuid')
-    UUID: string;
+    UUID: string
 
     @Column()
     Notification: string

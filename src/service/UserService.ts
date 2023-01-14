@@ -14,7 +14,6 @@ class UserService {
 
     constructor() {
         this.doa = new UserDAO()
-
     }
 
     private passwordSchema = new passwordValidator().is().min(8, "minimum 8 chars long")

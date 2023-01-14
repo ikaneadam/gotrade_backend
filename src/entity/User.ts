@@ -8,7 +8,7 @@ import {Order} from "./Order";
 @Entity('user')
 export class User {
     @PrimaryGeneratedColumn('uuid')
-    UUID: string;
+    UUID: string
 
     @Column({ unique: true })
     username: string

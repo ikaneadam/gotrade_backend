@@ -4,7 +4,7 @@ import {User} from "./User";
 @Entity('review')
 export class Review {
     @PrimaryGeneratedColumn('uuid')
-    UUID: string;
+    UUID: string
 
     @Column()
     rating: number

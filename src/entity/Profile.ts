@@ -4,7 +4,7 @@ import {Address} from "./Address";
 @Entity("profile")
 export class Profile {
     @PrimaryGeneratedColumn('uuid')
-    id: number
+    UUID: string
 
     @OneToOne(() => Address)
     @JoinColumn()

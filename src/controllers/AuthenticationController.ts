@@ -1,5 +1,5 @@
 import * as express from 'express'
-import AuthenticationService from "../service/authenticationService";
+import AuthenticationService from "../service/AuthenticationService";
 
 class AuthenticationController {
     public pathRefreshToken = '/api/refreshToken'

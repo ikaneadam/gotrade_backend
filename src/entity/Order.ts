@@ -5,7 +5,7 @@ import {User} from "./User";
 @Entity('order')
 export class Order {
     @PrimaryGeneratedColumn('uuid')
-    UUID: string;
+    UUID: string
 
     @Column({ nullable: false, type: "float" })
     finalPrice: number

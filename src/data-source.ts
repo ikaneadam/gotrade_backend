@@ -11,6 +11,7 @@ import { ProductAttribute } from "./entity/ProductAttribute";
 import { Order } from "./entity/Order";
 import { Profile } from "./entity/Profile";
 import { Review } from "./entity/Review";
+import {Offer} from "./entity/Offer";
 
 dotenv.config();
 
@@ -23,6 +24,6 @@ export const AppDataSource = new DataSource({
     port: Number(process.env.POSTGRES_PORT),
     synchronize: true,
     logging: false,
-    entities: [Address, Category, Notification, Order, Product, ProductAttribute, Profile, Review, User]
+    entities: [Address, Category, Notification, Order, Product, ProductAttribute, Profile, Review, User, Offer]
 })
 
