@@ -3,7 +3,7 @@ import ProductService from "../service/ProductService";
 import authChecker from "../middleware/authChecker";
 
 class ProductController {
-    public path = '/api/products/:id'
+    public path = '/api/products/:id?'
     public router = express.Router()
     private service = new ProductService()
 

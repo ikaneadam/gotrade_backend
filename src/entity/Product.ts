@@ -27,7 +27,7 @@ export class Product {
     offers: Offer[]
 
     @Column("text", { array: true })
-    ImagesURL: string[]
+    ImagesURLS: string[]
 
     @ManyToOne(() => User, User => User.products)
     user: User;
