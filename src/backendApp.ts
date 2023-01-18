@@ -1,6 +1,7 @@
 import express from "express";
 import {Express} from 'express-serve-static-core';
 import { AppDataSource } from "./data-source"
+import * as path from "path";
 
 class BackendApp {
     public app: Express
@@ -8,6 +9,7 @@ class BackendApp {
     constructor(appInit: { port: any; controllers: any; middleWares: any;}) {
         this.app = express()
         this.port = appInit.port
+        this.staticFiles()
         this.middlewares(appInit.middleWares)
         this.routes(appInit.controllers)
 
@@ -28,6 +30,10 @@ class BackendApp {
         this.app.use((req, res, next) => {
             res.status(404).send('<h1> Page not found </h1>');
         });
+    }
+
+    private staticFiles() {
+        this.app.use('/static', express.static(path.join(__dirname, '../fileStorage')))
     }
 
     public listen() {

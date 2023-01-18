@@ -4,12 +4,17 @@ import BuildPaginationOptionsFromQueryParameters from "../util/pagination/BuildP
 import {PaginationOptions} from "../util/pagination/pagination.options";
 import validator from "validator";
 import isUUID = validator.isUUID;
+import UserFromTokenExtractor from "../util/UserFromTokenExtractor";
+import * as joi from "joi";
+import {User} from "../entity/User";
 
 class ProductService {
     private readonly doa: ProductDAO;
+    private readonly tokenExtractor: UserFromTokenExtractor;
 
     constructor() {
         this.doa = new ProductDAO()
+        this.tokenExtractor = new UserFromTokenExtractor()
     }
 
     public getProduct =  async (req: Request, res: Response) => {
@@ -47,10 +52,29 @@ class ProductService {
         }
     }
 
+    private postProductSchema = joi.object({
+        name: joi.string().min(5).required(),
+        description: joi.string().min(0).required(),
+        price: joi.number().greater(0).required()
+    })
 
     public  postProduct =  async (req: Request, res: Response) => {
-        try {
+        const { error } = this.postProductSchema.validate(req.body)
+        if (error) {
+            return res.status(400).send(error.details[0].message)
+        }
 
+        try {
+            const user: User = await this.tokenExtractor.getUserFromToken(req)
+            const files = req.files
+            if (files === undefined || !Array.isArray(files)) {
+                return res.status(400).send('Please choose files')
+            }
+
+            const fileNames = files.map(x => x.filename);
+            const product = await this.doa.createProduct(req.body.name, req.body.description, req.body.price,fileNames, user)
+            console.log(product)
+            return res.status(200).send(product)
         } catch (error) {
             res.status(500);
         }

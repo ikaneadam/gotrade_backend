@@ -23,7 +23,7 @@ class BuildPaginationOptionsFromQueryParameters {
             return defaultSize
         }
 
-        if (paramater >= 0){
+        if (paramater <= 0){
             return defaultSize
         }
 

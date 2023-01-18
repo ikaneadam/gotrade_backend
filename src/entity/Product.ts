@@ -1,6 +1,7 @@
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm"
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm"
 import {User} from "./User";
 import {Offer} from "./Offer";
+import {ProductAttribute} from "./ProductAttribute";
 
 @Entity("product")
 export class Product {
@@ -26,9 +27,13 @@ export class Product {
     @JoinColumn()
     offers: Offer[]
 
+    @ManyToOne(() => ProductAttribute,{eager: true,})
+    @JoinColumn()
+    attributes: ProductAttribute[]
+
     @Column("text", { array: true })
     ImagesURLS: string[]
 
-    @ManyToOne(() => User, User => User.products)
+    @OneToMany(() => User, User => User.products,{eager: true,})
     user: User;
 }
