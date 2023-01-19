@@ -33,6 +33,9 @@ class ProductDAO {
     }
 
     public async createProduct(name: string, description: string, price: number, fileNames: string[], user: User): Promise<Product> {
+        if (fileNames.length === 0){
+            throw "product must have atleast one picture"
+        }
         const product = new Product();
         product.name = name
         product.description = description
