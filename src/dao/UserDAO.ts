@@ -9,9 +9,15 @@ class UserDAO {
         this.userRepository = AppDataSource.getRepository(User)
     }
 
-    public async getUserFromUUID(UUID: string): Promise<User> {
+    public async getUserByUUID(UUID: string): Promise<User> {
         const user = await this.userRepository.find({where: {UUID: UUID}})
         return user[0]
+    }
+
+    public async getPasswordByUsername(username: string): Promise<User> {
+        const user: User = await this.userRepository.findOneOrFail({ where: { username: username },
+            select: ['password'] });
+        return user
     }
 
     public async doesUserExist(Username: string): Promise<Boolean> {

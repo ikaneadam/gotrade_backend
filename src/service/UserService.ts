@@ -43,9 +43,9 @@ class UserService {
             if (!await this.doa.doesUserExist(req.body.username)) {
                 return res.status(401).send(this.loginError)
             }
-
-            const user = await this.doa.getUserByName(req.body.username)
-
+            console.log("test")
+            const user = await this.doa.getPasswordByUsername(req.body.username)
+            console.log(user)
             //compare password from db with password from the request
             if (!bcrypt.compareSync(req.body.password,user.password)) {
                 return res.status(401).send(this.loginError)
@@ -60,7 +60,8 @@ class UserService {
                 refreshToken: refreshToken
             });
         } catch (error) {
-            res.status(500);
+            console.log(error)
+            return res.status(500).send()
         }
     }
 
@@ -82,7 +83,7 @@ class UserService {
 
             res.status(200).send()
         } catch (error) {
-            res.status(500);
+            return res.status(500).send()
         }
     }
 

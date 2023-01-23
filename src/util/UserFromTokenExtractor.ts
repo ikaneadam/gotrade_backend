@@ -20,7 +20,7 @@ class UserFromTokenExtractor {
         try {
             const decodedToken = jwt.verify(accessToken, this.accessTokenSecret);
             const payload = Object(decodedToken)
-            return await this.userDAO.getUserFromUUID(payload.uuid)
+            return await this.userDAO.getUserByUUID(payload.uuid)
         }
 
         catch(e){

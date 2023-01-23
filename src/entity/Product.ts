@@ -34,6 +34,6 @@ export class Product {
     @Column("text", { array: true })
     ImagesURLS: string[]
 
-    @OneToMany(() => User, User => User.products,{eager: true,})
+    @ManyToOne(() => User, User => User.products,{eager: true,})
     user: User;
 }

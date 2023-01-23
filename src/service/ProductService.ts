@@ -38,7 +38,7 @@ class ProductService {
             const product = await this.doa.getProduct(req.params.id)
             return res.status(200).send(product)
         }catch (e){
-            return res.status(500);
+            return res.status(500).send()
         }
     }
 
@@ -48,7 +48,7 @@ class ProductService {
             const products = (await this.doa.getProductsPaginated(paginationOptions))
             return res.status(200).send(products)
         }catch (e){
-            return res.status(500);
+            return res.status(500).send()
         }
     }
 
@@ -72,11 +72,12 @@ class ProductService {
             }
 
             const fileNames = files.map(x => x.filename);
-            const product = await this.doa.createProduct(req.body.name, req.body.description, req.body.price,fileNames, user)
+            const product = await this.doa.createProduct(req.body.name, req.body.description, req.body.price, fileNames, user)
             console.log(product)
             return res.status(200).send(product)
         } catch (error) {
-            res.status(500);
+            console.log(error)
+            return res.status(500).send()
         }
     }
 
@@ -84,7 +85,7 @@ class ProductService {
         try {
 
         } catch (error) {
-            res.status(500);
+            return res.status(500).send()
         }
     }
 
@@ -92,7 +93,7 @@ class ProductService {
         try {
 
         } catch (error) {
-            res.status(500);
+            return res.status(500).send()
         }
     }
 
@@ -100,7 +101,7 @@ class ProductService {
         try {
 
         } catch (error) {
-            res.status(500);
+            return res.status(500).send()
         }
     }
 
@@ -108,7 +109,7 @@ class ProductService {
         try {
 
         } catch (error) {
-            res.status(500);
+            return res.status(500).send()
         }
     }
 
@@ -116,7 +117,7 @@ class ProductService {
         try {
 
         } catch (error) {
-            res.status(500);
+            return res.status(500).send()
         }
     }
 }
