@@ -20,6 +20,9 @@ class UserFromTokenExtractor {
         try {
             const decodedToken = jwt.verify(accessToken, this.accessTokenSecret);
             const payload = Object(decodedToken)
+            if (payload.uuid === undefined){
+                throw "invalid payload"
+            }
             return await this.userDAO.getUserByUUID(payload.uuid)
         }
 

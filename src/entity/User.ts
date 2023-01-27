@@ -5,7 +5,7 @@ import {Notification} from "./Notification";
 import {Review} from "./Review";
 import {Order} from "./Order";
 
-@Entity('user')
+@Entity()
 export class User {
     @PrimaryGeneratedColumn('uuid')
     UUID: string
@@ -17,7 +17,6 @@ export class User {
     password: string
 
     @OneToOne(() => Profile)
-    @JoinColumn()
     profile: Profile
 
     @ManyToOne(() => Product)

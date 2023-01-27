@@ -1,10 +1,7 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm'
+import {Column, Entity, PrimaryColumn} from 'typeorm'
 
-@Entity('category')
+@Entity()
 export class Category {
-    @PrimaryGeneratedColumn('uuid')
-    UUID: string
-
-    @Column()
+    @PrimaryColumn({ unique: true })
     category: string
 }

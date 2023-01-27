@@ -2,11 +2,8 @@ import {Request, Response} from "express";
 import * as joi from "joi";
 import * as bcrypt from 'bcrypt';
 import UserDAO from "../dao/UserDAO";
-import dotenv from "dotenv";
 import TokenCreation from "../util/tokenCreation";
 import passwordValidator from "password-validator";
-
-dotenv.config();
 
 class UserService {
     private readonly doa: UserDAO;
@@ -43,9 +40,8 @@ class UserService {
             if (!await this.doa.doesUserExist(req.body.username)) {
                 return res.status(401).send(this.loginError)
             }
-            console.log("test")
             const user = await this.doa.getPasswordByUsername(req.body.username)
-            console.log(user)
+
             //compare password from db with password from the request
             if (!bcrypt.compareSync(req.body.password,user.password)) {
                 return res.status(401).send(this.loginError)
@@ -60,7 +56,6 @@ class UserService {
                 refreshToken: refreshToken
             });
         } catch (error) {
-            console.log(error)
             return res.status(500).send()
         }
     }

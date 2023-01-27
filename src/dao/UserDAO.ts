@@ -16,7 +16,7 @@ class UserDAO {
 
     public async getPasswordByUsername(username: string): Promise<User> {
         const user: User = await this.userRepository.findOneOrFail({ where: { username: username },
-            select: ['password'] });
+            select: ['password', 'UUID', 'username'] });
         return user
     }
 

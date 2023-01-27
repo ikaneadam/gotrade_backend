@@ -1,0 +1,7 @@
+{
+  "notifications": {
+    "incomingOffer": "zojuist heeft gebruiker %%%, %%% euro geboden",
+    "withdrawnOffer": "zojuist heeft gebruiker %%% zijn bod ingetrokken",
+    "updatedOffer": "zojuist heeft gebruiker %%% zijn bod veranderd"
+  }
+}

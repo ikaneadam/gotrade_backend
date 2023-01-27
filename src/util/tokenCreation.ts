@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 class TokenCreation {
-
     private static accessTokenSecret =  process.env.ACCESS_TOKEN_SECRET
     private static refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET
 
