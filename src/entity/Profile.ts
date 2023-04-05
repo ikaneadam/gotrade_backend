@@ -1,14 +1,16 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn} from "typeorm"
-import {Address} from "./Address";
+import {User} from "./User";
 
-@Entity("profile")
+@Entity()
 export class Profile {
     @PrimaryGeneratedColumn('uuid')
     UUID: string
 
-    @OneToOne(() => Address)
-    @JoinColumn()
-    address: Address
+    @Column()
+    postalCode: string
+
+    @Column()
+    houseNumber: string
 
     @Column()
     email: string
@@ -18,4 +20,8 @@ export class Profile {
 
     @Column()
     profilePictureURL: string
+
+    @OneToOne(() => User, {cascade: true})
+    @JoinColumn()
+    user: User
 }

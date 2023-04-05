@@ -1,7 +1,7 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm'
 import {User} from "./User";
 
-@Entity('review')
+@Entity()
 export class Review {
     @PrimaryGeneratedColumn('uuid')
     UUID: string

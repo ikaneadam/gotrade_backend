@@ -1,8 +1,8 @@
-import {Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn} from 'typeorm'
+import {Column, Entity, OneToOne, PrimaryGeneratedColumn} from 'typeorm'
 import {Product} from "./Product";
 import {User} from "./User";
 
-@Entity('order')
+@Entity()
 export class Order {
     @PrimaryGeneratedColumn('uuid')
     UUID: string

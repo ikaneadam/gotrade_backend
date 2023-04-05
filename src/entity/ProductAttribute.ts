@@ -1,6 +1,7 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm'
+import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm'
+import {Product} from "./Product";
 
-@Entity('productAttribute')
+@Entity()
 export class ProductAttribute {
     @PrimaryGeneratedColumn('uuid')
     UUID: string
@@ -10,4 +11,7 @@ export class ProductAttribute {
 
     @Column()
     Attribute: string
+
+    @ManyToOne(() => Product, Product => Product.attributes)
+    product: Product;
 }

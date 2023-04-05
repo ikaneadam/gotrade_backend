@@ -1,8 +1,10 @@
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm"
+import {Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm"
 import {User} from "./User";
 import {Offer} from "./Offer";
+import {ProductAttribute} from "./ProductAttribute";
+import {Category} from "./Category";
 
-@Entity("product")
+@Entity()
 export class Product {
     @PrimaryGeneratedColumn('uuid')
     UUID: string
@@ -22,12 +24,24 @@ export class Product {
     @Column({ nullable: false})
     mainImageURL: string
 
-    @ManyToOne(() => Offer)
+    @ManyToMany(() => Category,{ eager : true, cascade: ["insert"]},)
+    @JoinTable()
+    category: Category[]
+
+    @OneToMany(() => Offer, (offer) => offer.product,{
+        cascade: ["insert"],
+    })
     @JoinColumn()
     offers: Offer[]
 
+    @OneToMany(() => ProductAttribute, (ProductAttribute) => ProductAttribute.product,{
+        cascade: ["insert"],
+    })
+    @JoinColumn()
+    attributes: ProductAttribute[]
+
     @Column("text", { array: true })
-    ImagesURL: string[]
+    ImagesURLS: string[]
 
     @ManyToOne(() => User, User => User.products)
     user: User;

@@ -33,7 +33,7 @@ class AuthenticationService {
                 })
 
         } catch (error) {
-            res.status(500);
+            return res.status(500).send()
         }
     }
 }

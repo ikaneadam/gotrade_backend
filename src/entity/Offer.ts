@@ -1,8 +1,8 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm'
-import {User} from "./User";
 import {Product} from "./Product";
+import {User} from "./User";
 
-@Entity('offer')
+@Entity()
 export class Offer {
     @PrimaryGeneratedColumn('uuid')
     UUID: string
@@ -12,4 +12,7 @@ export class Offer {
 
     @ManyToOne(() => Product, Product => Product.offers)
     product: Product;
+
+    @ManyToOne(() => User, {cascade: true, eager: true})
+    user: User;
 }

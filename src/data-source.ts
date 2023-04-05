@@ -3,15 +3,14 @@ import { DataSource } from "typeorm"
 import dotenv from "dotenv";
 
 import { User } from "./entity/User"
-import { Address } from "./entity/Address";
-import { Category } from "./entity/Category";
 import { Notification } from "./entity/Notification";
 import { Product } from "./entity/Product";
+import { Category } from "./entity/Category";
 import { ProductAttribute } from "./entity/ProductAttribute";
 import { Order } from "./entity/Order";
 import { Profile } from "./entity/Profile";
 import { Review } from "./entity/Review";
-import {Offer} from "./entity/Offer";
+import { Offer } from "./entity/Offer";
 
 dotenv.config();
 
@@ -24,6 +23,6 @@ export const AppDataSource = new DataSource({
     port: Number(process.env.POSTGRES_PORT),
     synchronize: true,
     logging: false,
-    entities: [Address, Category, Notification, Order, Product, ProductAttribute, Profile, Review, User, Offer]
+    entities: [Category, Notification, Order, Product, ProductAttribute, Profile, Review, User, Offer]
 })
 

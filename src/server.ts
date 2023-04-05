@@ -2,11 +2,14 @@ import BackendApp from "./backendApp";
 import cors from "cors";
 import express from "express";
 
+import dotenv from "dotenv";
+
 import UserController from "./controllers/UserController";
 import AuthenticationController from "./controllers/AuthenticationController";
-
-import dotenv from "dotenv";
 import ProductController from "./controllers/ProductController";
+import OfferController from "./controllers/OfferController";
+import ProfileController from "./controllers/ProfileController";
+import CategoryController from "./controllers/CategoryController";
 
 dotenv.config();
 
@@ -20,7 +23,10 @@ const server = new BackendApp({
     controllers: [
         new UserController(),
         new AuthenticationController(),
-        new ProductController()
+        new ProductController(),
+        new OfferController(),
+        new ProfileController(),
+        new CategoryController()
     ]
 })
 

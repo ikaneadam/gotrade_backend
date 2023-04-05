@@ -3,7 +3,7 @@ import DiskStorage from "../diskStorage";
 
 const diskStorage = new DiskStorage()
 
-const uploadFile = multer({
+const fileUpload = multer({
     storage: diskStorage.getDiskStorage(),
     limits: {
         fileSize: diskStorage.maxFileSize
@@ -17,4 +17,4 @@ const uploadFile = multer({
     }
 })
 
-export default uploadFile
+export default fileUpload
